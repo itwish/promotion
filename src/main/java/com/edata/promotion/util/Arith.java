@@ -50,7 +50,7 @@ public class Arith {
     }
 
     /**
-     * 除法：四舍五入，保留两位有效数字
+     * 除法：四舍五入，保留3位有效数字
      *
      * @param x
      * @param y
@@ -59,7 +59,7 @@ public class Arith {
     public static double div(double x, double y) {
         BigDecimal a = BigDecimal.valueOf(x);
         BigDecimal b = BigDecimal.valueOf(y);
-        return a.divide(b, 2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        return a.divide(b, 3, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
     /**
