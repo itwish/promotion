@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.function.Function;
 
 /**
+ * 获取最低价
  * @author yugt 2023/6/20
  */
 @Slf4j
@@ -29,13 +30,13 @@ public class PriceService implements IPriceService {
      */
     @Override
     public Double getLowestPrice(OrderDTO orderDTO) {
-        List<Function<OrderDTO, Order>> handlerChain = dataPipeline.getHandlerChain();
+        List<Function<OrderDTO, Order>> handlerPipeline = dataPipeline.getHandlerPipeline();
         if(StringUtils.isBlank(orderDTO.getPromotion())){
             return orderDTO.getPrice();
         }
         double minPrice = Double.MAX_VALUE;
-        for (Function<OrderDTO, Order> fn : handlerChain) {
-            Order order = fn.apply(orderDTO);
+        for (Function<OrderDTO, Order> handlerFn : handlerPipeline) {
+            Order order = handlerFn.apply(orderDTO);
             if (order == null) {
                 continue;
             }

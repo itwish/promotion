@@ -212,25 +212,25 @@ public class DataPipeline {
         return order;
     };
 
-    private List<Function<OrderDTO, Order>> handlerChain = new ArrayList<>();
+    private List<Function<OrderDTO, Order>> handlerPipeline = new ArrayList<>();
 
     public DataPipeline() {
-        handlerChain.add(ignoreFn);
-        handlerChain.add(fullReduceFn);
-        handlerChain.add(multiFullReduceFn);
-        handlerChain.add(fullSaveFn);
-        handlerChain.add(everyReduceFn1);
-        handlerChain.add(everyReduceFn2);
-        handlerChain.add(everyReduceFn3);
-        handlerChain.add(everyReduceFn4);
-        handlerChain.add(discountFn1);
-        handlerChain.add(discountFn2);
-        handlerChain.add(discountFn3);
-        handlerChain.add(discountFn4);
+        handlerPipeline.add(ignoreFn);
+        handlerPipeline.add(fullReduceFn);
+        handlerPipeline.add(multiFullReduceFn);
+        handlerPipeline.add(fullSaveFn);
+        handlerPipeline.add(everyReduceFn1);
+        handlerPipeline.add(everyReduceFn2);
+        handlerPipeline.add(everyReduceFn3);
+        handlerPipeline.add(everyReduceFn4);
+        handlerPipeline.add(discountFn1);
+        handlerPipeline.add(discountFn2);
+        handlerPipeline.add(discountFn3);
+        handlerPipeline.add(discountFn4);
     }
 
-    public List<Function<OrderDTO, Order>> getHandlerChain() {
-        return this.handlerChain;
+    public List<Function<OrderDTO, Order>> getHandlerPipeline() {
+        return this.handlerPipeline;
     }
 
 }
