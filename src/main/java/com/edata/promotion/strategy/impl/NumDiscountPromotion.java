@@ -4,6 +4,8 @@ import com.edata.promotion.model.FullDiscount;
 import com.edata.promotion.model.Order;
 import com.edata.promotion.strategy.Promotion;
 
+import static com.edata.promotion.util.Arith.*;
+
 /**
  * 按购买数量计算折扣后的最低价
  * @author yugt 2023/6/20
@@ -22,6 +24,6 @@ public class NumDiscountPromotion implements Promotion {
     public double getLowestPrice(Order order) {
         double price = order.getPrice();
         FullDiscount numDiscount = (FullDiscount) order.getPromotionData();
-        return (double) Math.round((price * numDiscount.getDiscount()/10)*100)/100;
+        return mul(price, div(numDiscount.getDiscount(),10));
     }
 }

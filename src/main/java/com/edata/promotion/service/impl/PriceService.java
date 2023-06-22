@@ -25,6 +25,7 @@ public class PriceService implements IPriceService {
     private DataPipeline dataPipeline;
 
     /**
+     * 获取最低价通用方法
      * @param orderDTO
      * @return
      */

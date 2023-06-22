@@ -4,8 +4,11 @@ import com.edata.promotion.model.FullDiscount;
 import com.edata.promotion.model.Order;
 import com.edata.promotion.strategy.Promotion;
 
+import static com.edata.promotion.util.Arith.*;
+
 /**
  * 满减
+ *
  * @author yugt 2023/6/20
  */
 public class FullReducePromotion implements Promotion {
@@ -16,10 +19,10 @@ public class FullReducePromotion implements Promotion {
         FullDiscount fullDiscount = (FullDiscount) order.getPromotionData();
         double reduce = fullDiscount.getDiscount();
         double minPrice;
-        if(price>= fullDiscount.getAmount()){
-            minPrice = price - reduce;
-        }else{
-            minPrice = (price*2-reduce)/2;
+        if (gte(price, fullDiscount.getAmount())) {
+            minPrice = sub(price, reduce);
+        } else {
+            minPrice = div((sub(mul(price, 2), reduce)), 2);
         }
         return minPrice;
     }
