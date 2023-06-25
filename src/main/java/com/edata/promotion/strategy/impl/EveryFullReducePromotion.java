@@ -8,12 +8,12 @@ import static com.edata.promotion.util.Arith.*;
  * 每(满)减
  * @author yugt 2023/6/20
  */
-public class EveryFullReducePromotion implements Promotion {
+public class EveryFullReducePromotion implements Promotion<EveryFullReduce> {
 
     @Override
-    public double getLowestPrice(Order order) {
+    public double getLowestPrice(Order<EveryFullReduce> order) {
         double price = order.getPrice();
-        EveryFullReduce everyFullReduce = (EveryFullReduce) order.getPromotionData();
+        EveryFullReduce everyFullReduce = order.getPromotionData();
         double reduce = mul(Math.floor(div(price, everyFullReduce.getAmount())), everyFullReduce.getDiscount());
         Double maxReduce = everyFullReduce.getMaxReduce();
         double minPrice;

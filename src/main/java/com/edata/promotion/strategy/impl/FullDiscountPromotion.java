@@ -11,12 +11,12 @@ import static com.edata.promotion.util.Arith.*;
  *
  * @author yugt 2023/6/19
  */
-public class FullDiscountPromotion implements Promotion {
+public class FullDiscountPromotion implements Promotion<FullDiscount> {
 
     @Override
-    public double getLowestPrice(Order order) {
+    public double getLowestPrice(Order<FullDiscount> order) {
         double price = order.getPrice();
-        FullDiscount fullDiscount = (FullDiscount) order.getPromotionData();
+        FullDiscount fullDiscount = order.getPromotionData();
         double minPrice;
         if (gte(price, fullDiscount.getAmount())) {
             minPrice = mul(price, div(fullDiscount.getDiscount(), 10));

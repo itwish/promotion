@@ -13,12 +13,12 @@ import static com.edata.promotion.util.Arith.*;
  * 多个-购买数量折扣
  * @author yugt 2023/6/21
  */
-public class MultiNumDiscountPromotion implements Promotion {
+public class MultiNumDiscountPromotion implements Promotion<List<FullDiscount>> {
 
     @Override
-    public double getLowestPrice(Order order) {
+    public double getLowestPrice(Order<List<FullDiscount>> order) {
         double price = order.getPrice();
-        List<FullDiscount> numDiscountList = (List<FullDiscount>) order.getPromotionData();
+        List<FullDiscount> numDiscountList = order.getPromotionData();
         return numDiscountList.stream()
                 .map(x -> mul(price, div(x.getDiscount(),10)))
                 .min(Comparator.naturalOrder())

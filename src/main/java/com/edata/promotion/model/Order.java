@@ -8,7 +8,7 @@ import lombok.Data;
  * @author yugt 2023/6/20
  */
 @Data
-public class Order {
+public class Order<T> {
     /**
      * 处理后的订单数据
      */
@@ -17,14 +17,14 @@ public class Order {
     /**
      * 提取后的结构化促销数据
      */
-    Object promotionData;
+    T promotionData;
 
     /**
      * 促销策略
      */
     PromotionStrategy promotionStrategy;
 
-    public Order(Double price, Object promotionData, PromotionStrategy promotionStrategy) {
+    public Order(Double price, T promotionData, PromotionStrategy promotionStrategy) {
         this.price = price;
         this.promotionData = promotionData;
         this.promotionStrategy = promotionStrategy;

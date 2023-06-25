@@ -13,11 +13,11 @@ import static com.edata.promotion.util.Arith.*;
  *
  * @author yugt 2023/6/19
  */
-public class MultiFullReducePromotion implements Promotion {
+public class MultiFullReducePromotion implements Promotion<List<FullDiscount>> {
 
     @Override
-    public double getLowestPrice(Order order) {
-        List<FullDiscount> fullDiscountList = (List<FullDiscount>) order.getPromotionData();
+    public double getLowestPrice(Order<List<FullDiscount>> order) {
+        List<FullDiscount> fullDiscountList = order.getPromotionData();
         Double price = order.getPrice();
         return fullDiscountList.stream()
                 .mapToDouble(full -> gte(price, full.getAmount()) ? sub(price, full.getDiscount()) : price)
